@@ -2,7 +2,7 @@ import {SignJWT, jwtVerify} from 'jose'
 import {cookies} from 'next/headers'
 import {NextRequest, NextResponse} from 'next/server'
 
-const secretkey = "secret"
+const secretkey = process.env.SECRET_KEY;
 const key = new TextEncoder().encode(secretkey)
 export async function encrypt(payload:any){
     return await new SignJWT(payload)
@@ -21,11 +21,13 @@ export async function login(formData: FormData){
     
     const user = {email:formData.get("email"),password:formData.get("password"),name:"john"}
 
+    if(user.email === process.env.SECRET_USERNAME && user.password === process.env.SECRET_PASSWORD){
+        const expires = new Date(Date.now()+ 10 *1000)
+        const session = await encrypt ({user, expires})
 
-    const expires = new Date(Date.now()+ 10 *1000)
-    const session = await encrypt ({user, expires})
-
-    cookies().set("session", session, {expires, httpOnly: true})
+        cookies().set("session", session, {expires, httpOnly: true})
+    }
+    
 }
 
 export async function logout(){

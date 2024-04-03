@@ -7,10 +7,10 @@ export default async function Home() {
     <form action={async (formdata)=>{
       'use server'
       await login(formdata)
-      redirect('/')
+      redirect('/home')
     }}>
-      <input type="email" name='email'id='email' />
-      <input type="password" name="password" id="password" />
+      <input type="email" name='email'id='email' style={{color: 'black'}}/>
+      <input type="password" name="password" id="password" style={{color: 'black'}} />
       <button type='submit'>login</button>
     </form>
     <form action={async (formdata)=>{
