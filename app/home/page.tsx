@@ -11,10 +11,14 @@ export default async function Home() {
     }
   return (
    <section>
-    
-    <Link href="/profile">Profile</Link>
-    <Link href="/">Log In</Link>
-    <h1>home</h1>
+    <nav>
+      <h1>Home</h1>
+      <div className="links-container">
+        <Link href="/profile">Profile</Link>
+        <Link href="/">Login / Logout</Link>
+      </div>
+    </nav>
+    <h4>Welcome Home</h4>
    </section>
   );
 }

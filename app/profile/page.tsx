@@ -11,11 +11,15 @@ export default async function profile() {
         redirect('/')
     }
   return (
-    <div>
-        <Link href="/home">Home</Link> 
-        <Link href="/">Log In</Link>
-        <p>Email: {user.email}</p>
-        <p>Name: {user.name}</p>
-    </div>
+    <section>
+        <nav>
+        <h1>Welcome Back, {user.name}</h1>
+            <div className="links-container">
+                <Link href="/home">Home</Link> 
+                <Link href="/">Login / Logout</Link>
+            </div>
+        </nav>
+        <h4>Email: {user.email}</h4>
+    </section>
   )
 }
