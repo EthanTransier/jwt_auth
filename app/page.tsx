@@ -6,8 +6,9 @@ export default async function Home() {
    <section>
     <form action={async (formdata)=>{
       'use server'
-      await login(formdata)
-      redirect('/home')
+      if(await login(formdata)){
+        redirect('/home')
+      }
     }}>
       <input type="email" name='email'id='email' style={{color: 'black'}}/>
       <input type="password" name="password" id="password" style={{color: 'black'}} />

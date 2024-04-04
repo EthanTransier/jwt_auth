@@ -1,6 +1,8 @@
+"use server"
 import {SignJWT, jwtVerify} from 'jose'
 import {cookies} from 'next/headers'
 import {NextRequest, NextResponse} from 'next/server'
+
 
 const secretkey = process.env.SECRET_KEY;
 const key = new TextEncoder().encode(secretkey)
@@ -26,8 +28,9 @@ export async function login(formData: FormData){
         const session = await encrypt ({user, expires})
 
         cookies().set("session", session, {expires, httpOnly: true})
+        return true;
     }
-    
+    return false;
 }
 
 export async function logout(){
